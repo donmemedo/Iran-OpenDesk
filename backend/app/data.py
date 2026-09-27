@@ -1,0 +1,132 @@
+"""Seed catalog for Miz Baz Iran (OpenDesk Iran). Prices in Toman, sizes in cm.
+
+parts: [x, y, z, w, h, d] boxes (y is up) — rendered isometrically by the frontend
+and flattened into the downloadable cut sheet.
+"""
+
+CATEGORIES = [
+    {"id": "office", "name": {"fa": "اداری", "en": "Office"}},
+    {"id": "home", "name": {"fa": "خانه", "en": "Home"}},
+    {"id": "storage", "name": {"fa": "قفسه", "en": "Storage"}},
+]
+
+CITIES = [
+    {"id": "tehran", "name": {"fa": "تهران", "en": "Tehran"}},
+    {"id": "karaj", "name": {"fa": "کرج", "en": "Karaj"}},
+    {"id": "isfahan", "name": {"fa": "اصفهان", "en": "Isfahan"}},
+    {"id": "shiraz", "name": {"fa": "شیراز", "en": "Shiraz"}},
+    {"id": "mashhad", "name": {"fa": "مشهد", "en": "Mashhad"}},
+]
+
+MATERIALS = [
+    {"id": "birch_ply", "name": {"fa": "چندلایی توس", "en": "Birch plywood"}, "color": "#E3C295", "factor": 1.0},
+    {"id": "oak", "name": {"fa": "روکش بلوط", "en": "Oak veneer"}, "color": "#C48E57", "factor": 1.35},
+    {"id": "walnut", "name": {"fa": "روکش گردو", "en": "Walnut veneer"}, "color": "#7B4F33", "factor": 1.6},
+    {"id": "white_mdf", "name": {"fa": "ام‌دی‌اف سفید", "en": "White MDF"}, "color": "#EDEBE6", "factor": 0.8},
+    {"id": "black_mdf", "name": {"fa": "ام‌دی‌اف مشکی", "en": "Black MDF"}, "color": "#3A3836", "factor": 0.95},
+    {"id": "sage", "name": {"fa": "رنگی مریم‌گلی", "en": "Sage lacquer"}, "color": "#9DAE95", "factor": 1.1},
+]
+
+DESIGNERS = {
+    "negar": {"name": {"fa": "نگار صدری", "en": "Negar Sadri"}, "royalty": 0.08},
+    "arash": {"name": {"fa": "آرش کیانی", "en": "Arash Kiani"}, "royalty": 0.06},
+    "sara": {"name": {"fa": "سارا مهرآیین", "en": "Sara Mehrayin"}, "royalty": 0.07},
+    "khat": {"name": {"fa": "استودیو خط", "en": "Khat Studio"}, "royalty": 0.05},
+    "bahar": {"name": {"fa": "بهار نوروزی", "en": "Bahar Nowruzi"}, "royalty": 0.06},
+}
+
+MAKERS = [
+    {"id": "choobnegar", "name": {"fa": "کارگاه چوب‌نگار", "en": "Choobnegar Workshop"}, "city": "tehran",
+     "rating": 4.9, "lead": 7, "factor": 1.08, "orders": 412, "machine": {"fa": "CNC سه‌محور ۱۳۰×۲۵۰", "en": "3-axis CNC 1300×2500"}},
+    {"id": "fanavaran", "name": {"fa": "فن‌آوران برش", "en": "Fanavaran Cut"}, "city": "tehran",
+     "rating": 4.7, "lead": 5, "factor": 1.0, "orders": 268, "machine": {"fa": "CNC سه‌محور ۱۲۲×۲۴۴", "en": "3-axis CNC 1220×2440"}},
+    {"id": "parse", "name": {"fa": "استودیو ساخت پارسه", "en": "Parse Build Studio"}, "city": "tehran",
+     "rating": 4.8, "lead": 9, "factor": 1.14, "orders": 157, "machine": {"fa": "CNC پنج‌محور", "en": "5-axis CNC"}},
+    {"id": "alborz-cnc", "name": {"fa": "کارگاه CNC البرز", "en": "Alborz CNC"}, "city": "karaj",
+     "rating": 4.6, "lead": 6, "factor": 0.94, "orders": 203, "machine": {"fa": "CNC سه‌محور ۱۳۰×۲۵۰", "en": "3-axis CNC 1300×2500"}},
+    {"id": "naghsh", "name": {"fa": "هنر برش نقش جهان", "en": "Naghsh-e Jahan Cut"}, "city": "isfahan",
+     "rating": 4.8, "lead": 8, "factor": 0.92, "orders": 331, "machine": {"fa": "CNC سه‌محور ۱۵۰×۳۰۰", "en": "3-axis CNC 1500×3000"}},
+    {"id": "zand", "name": {"fa": "کارگاه چوب زند", "en": "Zand Woodworks"}, "city": "shiraz",
+     "rating": 4.7, "lead": 8, "factor": 0.9, "orders": 184, "machine": {"fa": "CNC سه‌محور ۱۲۲×۲۴۴", "en": "3-axis CNC 1220×2440"}},
+    {"id": "toos", "name": {"fa": "سازه چوب توس", "en": "Toos Timber"}, "city": "mashhad",
+     "rating": 4.5, "lead": 10, "factor": 0.88, "orders": 142, "machine": {"fa": "CNC سه‌محور ۱۳۰×۲۵۰", "en": "3-axis CNC 1300×2500"}},
+    {"id": "sepahan", "name": {"fa": "سپاهان ماشین‌کاری", "en": "Sepahan Machining"}, "city": "isfahan",
+     "rating": 4.6, "lead": 6, "factor": 0.97, "orders": 96, "machine": {"fa": "CNC چهارمحور", "en": "4-axis CNC"}},
+]
+
+_slats = [[16 + i * 12, 4, 19, 5, 142, 2] for i in range(8)]
+
+DESIGNS = [
+    {"slug": "sarv-desk", "category": "office", "designer": "negar", "material": "birch_ply",
+     "name": {"fa": "میز کار سرو", "en": "Sarv Desk"},
+     "desc": {"fa": "میز کار روزمره با قفسه مانیتور و پنل پشتی برای پنهان کردن کابل‌ها. بدون پیچ، با اتصال‌های کام و زبانه.",
+              "en": "An everyday desk with a monitor shelf and a modesty panel that hides the cables. No screws — just slot joints."},
+     "price": 18_500_000, "size": [140, 87, 70], "range": [100, 180],
+     "parts": [[4, 0, 4, 7, 4, 62], [129, 0, 4, 7, 4, 62], [6, 4, 6, 3, 68, 58], [131, 4, 6, 3, 68, 58],
+               [9, 38, 8, 122, 30, 2], [0, 72, 0, 140, 3, 70], [22, 75, 4, 2, 10, 22], [116, 75, 4, 2, 10, 22],
+               [20, 85, 4, 100, 2, 22]]},
+    {"slug": "alborz-standing", "category": "office", "designer": "arash", "material": "oak",
+     "name": {"fa": "میز ایستاده البرز", "en": "Alborz Standing Desk"},
+     "desc": {"fa": "میز ایستاده با قاب A شکل و طبقه پایین برای کیف و کتاب. برای روزهایی که نشستن کافی است.",
+              "en": "A standing desk with an A-frame base and a low shelf for bags and books. For days when sitting is enough."},
+     "price": 24_000_000, "size": [120, 105, 65], "range": [90, 160],
+     "parts": [[5, 0, 2, 9, 4, 61], [106, 0, 2, 9, 4, 61], [8, 4, 6, 3, 98, 53], [109, 4, 6, 3, 98, 53],
+               [11, 12, 8, 98, 2, 49], [11, 50, 30, 98, 12, 3], [0, 102, 0, 120, 3, 65]]},
+    {"slug": "kandoo-shelf", "category": "storage", "designer": "sara", "material": "white_mdf",
+     "name": {"fa": "قفسه ماژولار کندو", "en": "Kandoo Modular Shelf"},
+     "desc": {"fa": "قفسه ماژولار که کنار هم یا روی هم چیده می‌شود. از کتابخانه خانه تا بایگانی دفتر.",
+              "en": "A modular shelf you can place side by side or stack. From a home library to office archives."},
+     "price": 16_000_000, "size": [90, 180, 35], "range": [60, 120],
+     "parts": [[2, 0, 0, 86, 180, 1], [0, 0, 0, 2, 180, 35], [2, 5, 1, 86, 2, 34], [2, 48, 1, 86, 2, 34],
+               [2, 91, 1, 86, 2, 34], [2, 134, 1, 86, 2, 34], [2, 178, 1, 86, 2, 34], [88, 0, 0, 2, 180, 35]]},
+    {"slug": "damavand-meeting", "category": "office", "designer": "khat", "material": "walnut",
+     "name": {"fa": "میز جلسه دماوند", "en": "Damavand Meeting Table"},
+     "desc": {"fa": "میز جلسه هشت‌نفره با تیر میانی برای مسیر کابل. در سه قطعه تحویل و در بیست دقیقه برپا می‌شود.",
+              "en": "An eight-seat meeting table with a central beam for cable runs. Ships in three pieces, stands up in twenty minutes."},
+     "price": 46_000_000, "size": [240, 75, 110], "range": [180, 300],
+     "parts": [[26, 0, 12, 12, 3, 86], [202, 0, 12, 12, 3, 86], [30, 3, 15, 4, 69, 80], [206, 3, 15, 4, 69, 80],
+               [34, 50, 53, 172, 14, 4], [0, 72, 0, 240, 3, 110]]},
+    {"slug": "nasim-laptop", "category": "home", "designer": "bahar", "material": "sage",
+     "name": {"fa": "میز لپ‌تاپ نسیم", "en": "Nasim Laptop Desk"},
+     "desc": {"fa": "میز جمع‌وجور برای کار از خانه با یک طبقه زیر رویه. در کنج‌ترین گوشه اتاق هم جا می‌شود.",
+              "en": "A compact work-from-home desk with a shelf under the top. Fits even the tightest corner."},
+     "price": 7_900_000, "size": [90, 75, 50], "range": [70, 120],
+     "parts": [[3, 0, 3, 3, 72, 44], [6, 62, 3, 78, 8, 2], [6, 58, 5, 78, 2, 40], [84, 0, 3, 3, 72, 44],
+               [0, 72, 0, 90, 3, 50]]},
+    {"slug": "zagros-partition", "category": "office", "designer": "arash", "material": "birch_ply",
+     "name": {"fa": "پارتیشن زاگرس", "en": "Zagros Partition"},
+     "desc": {"fa": "پارتیشن سبک با تیغه‌های عمودی که فضا را جدا می‌کند اما نور را نه.",
+              "en": "A light partition with vertical slats that divides the space, not the light."},
+     "price": 13_500_000, "size": [120, 150, 40], "range": [80, 180],
+     "parts": [[10, 0, 5, 8, 4, 30], [102, 0, 5, 8, 4, 30], [10, 4, 18, 4, 146, 4], *_slats,
+               [106, 4, 18, 4, 146, 4], [10, 146, 18, 100, 4, 4]]},
+    {"slug": "aras-counter", "category": "office", "designer": "khat", "material": "black_mdf",
+     "name": {"fa": "کانتر پذیرش ارس", "en": "Aras Reception Counter"},
+     "desc": {"fa": "کانتر پذیرش برای دفتر، کلینیک یا کافه؛ با لبه بالایی برای امضا و میز کار پشت آن.",
+              "en": "A reception counter for offices, clinics and cafés, with a raised ledge for signing and a desk behind it."},
+     "price": 38_000_000, "size": [160, 108, 62], "range": [120, 220],
+     "parts": [[0, 0, 0, 4, 105, 56], [4, 72, 0, 152, 3, 56], [0, 0, 56, 160, 105, 4], [156, 0, 0, 4, 105, 56],
+               [-2, 105, 40, 164, 3, 22]]},
+    {"slug": "gaz-stool", "category": "home", "designer": "negar", "material": "oak",
+     "name": {"fa": "چهارپایه گز", "en": "Gaz Stool"},
+     "desc": {"fa": "چهارپایه‌ای که کنار میز، پای پنجره یا جلوی کتابخانه به کار می‌آید. از یک تکه تخته کوچک.",
+              "en": "A stool for the desk, the window or the bookshelf. Cut from one small offcut."},
+     "price": 3_200_000, "size": [38, 45, 38], "range": [32, 46],
+     "parts": [[3, 0, 4, 32, 42, 2], [4, 20, 6, 2, 8, 26], [32, 20, 6, 2, 8, 26], [3, 0, 32, 32, 42, 2],
+               [0, 42, 0, 38, 3, 38]]},
+    {"slug": "pellekan-bookcase", "category": "storage", "designer": "sara", "material": "birch_ply",
+     "name": {"fa": "کتابخانه پلکان", "en": "Pellekan Step Bookcase"},
+     "desc": {"fa": "کتابخانه پله‌ای که از کنار دیوار بالا می‌رود؛ برای کتاب، گلدان و هر چیزی که دوستش دارید.",
+              "en": "A stepped bookcase that climbs the wall — for books, plants and everything you love."},
+     "price": 12_800_000, "size": [100, 120, 30], "range": [80, 130],
+     "parts": [[0, 0, 0, 100, 2, 30], [0, 2, 0, 2, 40, 30], [2, 40, 0, 30, 2, 30], [32, 2, 0, 2, 78, 30],
+               [34, 40, 0, 31, 2, 30], [34, 80, 0, 31, 2, 30], [65, 2, 0, 2, 118, 30], [67, 40, 0, 31, 2, 30],
+               [67, 80, 0, 31, 2, 30], [67, 118, 0, 31, 2, 30], [98, 2, 0, 2, 118, 30]]},
+    {"slug": "ghoncheh-kids", "category": "home", "designer": "bahar", "material": "white_mdf",
+     "name": {"fa": "میز کودک غنچه", "en": "Ghoncheh Kids Desk"},
+     "desc": {"fa": "میز کودک با جای کتاب و مداد، با لبه‌های گرد و رنگ بی‌خطر.",
+              "en": "A kids' desk with room for books and pencils, rounded edges and child-safe finish."},
+     "price": 6_400_000, "size": [80, 55, 50], "range": [60, 100],
+     "parts": [[3, 0, 3, 3, 52, 44], [6, 37, 3, 68, 15, 1], [6, 35, 4, 68, 2, 42], [74, 0, 3, 3, 52, 44],
+               [0, 52, 0, 80, 3, 50]]},
+]
